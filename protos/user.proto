@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+    rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
+    rpc RegisterUser (RegisterUserRequest) returns (RegisterUserResponse) {}
+    rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
+    rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse) {}
+    rpc ListUsers (ListUserRequest) returns (ListUserResponse) {}
+    rpc LoginUser (LoginUserRequest) returns (LoginUserResponse) {}
+}
+
+
+message GetUserRequest {
+    string id = 1;
+}
+
+message GetUserResponse {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string phone = 4;
+    string password = 5;
+    int64 created_at = 6;
+    int64 updated_at = 7;
+}
+
+message RegisterUserRequest {
+   required string name = 1;
+   required string email = 2;
+   required string phone = 3;
+   required string password = 4;
+}
+
+message RegisterUserResponse {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string phone = 4;
+    string password = 5;
+    int64 created_at = 6;
+    int64 updated_at = 7;
+}
+
+message UpdateUserRequest {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string phone = 4;
+    string password = 5;
+}
+
+message UpdateUserResponse {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string phone = 4;
+    string password = 5;
+    int64 created_at = 6;
+    int64 updated_at = 7;
+}
+
+message DeleteUserRequest {
+    string id = 1;
+}
+
+message DeleteUserResponse {
+    string id = 1;
+}
+
+message ListUserRequest {
+    string page = 1;
+    string limit = 2;
+    map<string, string> filters = 3;
+}
+
+message ListUserResponse {
+    repeated GetUserResponse users = 1;
+}
+
+message LoginUserRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginUserResponse {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string phone = 4;
+    string password = 5;
+    int64 created_at = 6;
+    int64 updated_at = 7;
+}
+
+message Empty {}
+
+message Error {
+    string message = 1;
+}
